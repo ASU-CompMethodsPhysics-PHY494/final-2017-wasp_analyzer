@@ -33,3 +33,5 @@ cax.patch.set_alpha(0)
 cax.set_frame_on(False)
 plt.colorbar(orientation='vertical')
 plt.show()
+
+print("the sum of b is ", sum(b))
