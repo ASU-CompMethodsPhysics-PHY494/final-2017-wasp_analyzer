@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-a = 100
-b = np.zeros((2*a+1,2*a+1), dtype=np.float64)
+a = 200
+rp = 40
+b = np.zeros((2*a+1,2*a+1+rp), dtype=np.float64)
 
 #making a new code that may or may not be used
 
@@ -43,6 +44,15 @@ def plotarray(x):
 # you can comment this out to not plot if you'd like
 plotarray(b)
 
-# this is supposed to be non-trivial so if you run and get a number you
+# this is supposed to be 8-trivial so if you run and get a number you
 # definitely did not expect, it COULD be right
-print("the sum of b is ", np.sum(b))
+for i in range(10):
+    print(np.sum(b)+i)
+'''
+for i in range(-a,a):
+    for j in range(-a,a):
+        if np.sqrt((i-i)**2 + j**2)
+            b[[i+a],[j+a]] = 0
+        else:
+            b[[i+a],[j+a]] = I
+'''
