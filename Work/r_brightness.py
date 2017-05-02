@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-a = 100
+a = 500
 b = np.zeros((2*a+1,2*a+1), dtype=np.float64)
 
 #making a new code that may or may not be used
