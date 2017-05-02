@@ -1,9 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+<<<<<<< HEAD
 a = 200
 rp = 40
 b = np.zeros((2*a+1,2*a+1+rp), dtype=np.float64)
+=======
+a = 500
+b = np.zeros((2*a+1,2*a+1), dtype=np.float64)
+>>>>>>> 50679de5c8392b05852aa19686dc8b67b7d24883
 
 #making a new code that may or may not be used
 
