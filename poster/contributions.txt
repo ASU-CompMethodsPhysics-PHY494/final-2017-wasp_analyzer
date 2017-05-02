@@ -1,0 +1,28 @@
+CONTRIBUTIONS
+
+ed-escalante:
+
+ed-escalante has been playing a pivotal role in the ideation process of the entire project. He used his
+analytical skills to valuably contribute to and lead the algorithm development of the project’s WASP55
+simulation that is under the name “r_brightness.py”. Through doing this, he has been able to greatly
+steer the project in the right direction. While collaborating with KezmanSaboi and TianchengGong, he is at the
+moment trying to integrate the transit of WASP55 b across WASP55 in the code that the team currently
+has.
+
+KezmanSaboi:
+
+To kick-start the project, KezmanSaboi developed and wrote the project proposal clearly stating
+formulae needed as well as the goals needed to be ultimately achieved from the entire project. He has
+been actively involved in the ideation process of figuring out how key and non-trivial parts of the
+project, such as the simulation of WASP55, can be achieved. He initially developed a short algorithm in
+VPython to observe the orbital movements of WASP55 b around WASP55. Additionally, he has been
+involved in researching ways in which an efficient and well-functioning algorithm can be developed to
+ultimately enable the team achieve its desired goals that are clearly outlined in the project proposal.
+
+
+TianchengGong:
+
+TianchengGong has helped in establishing the useful functions that are required to calculate the
+wanted light curves of WASP55 b’s transit across WASP55. He has been editing the “r_brightness.py”
+code to make it process a better matrix. He has also been actively involved in the team’s brainstorming
+meetings.
