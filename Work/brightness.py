@@ -47,9 +47,8 @@ for k in range(2*a+1+4*rp):
                     planet[[i+rp],[j+rp+k]] = True
                 else:
                     planet[[i+rp],[j+rp+k]] = False
-        planet_ma = np.ma.masked_array(np.ones(planet.shape), mask=planet)
-        pos_ind.append(star[planet_ma].sum())
-
+    planet_ma = np.ma.masked_array(np.ones(planet.shape), mask=planet)
+    pos_ind.append(star[planet_ma].sum())
 
 plt.imshow(star)
 plt.imshow(planet.T)
