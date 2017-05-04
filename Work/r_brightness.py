@@ -1,10 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-rp = 40
 
-a = 100
-star = np.zeros((2*a+1+4*rp,2*a+1+4*rp), dtype=np.float64)
+rp = 5
+rs = 10*rp
+a = rs
+
+size_of_final_matrix = 2*a+4*rp+1
+finsiz = size_of_final_matrix
+star = np.zeros((finsiz,finsiz), dtype=np.float64)
 
 # the core plotting code was found/taken from stack overflow
 def plotarray(x):
@@ -24,8 +28,8 @@ def plotarray(x):
     plt.show()
 
 # giving (x,y) points their respective brightness on the surface of the star
-for i in range(-a,a):
-    for j in range(-a,a):
+for i in range(-a,a+1):
+    for j in range(-a,a+1):
         #print(i, j)
         if (i**2 + j**2)>a**2:
             star[[i+a+2*rp],[j+a+2*rp]] = 0
@@ -40,19 +44,26 @@ planet = np.ones_like(star, dtype=np.bool)
 planet[:, :] = True
 
 pos_ind = []
-for k in range(a):
-    for i in range(-rp,rp):
-        for j in range(-rp,rp):
-                if (i**2 + j**2)>rp**2:
-                    planet[[i+2*rp+a],[j+k]] = True
-                else:
-                    planet[[i+2*rp+a],[j+k]] = False
-    planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
-    pos_ind.append(star[planet].sum())
-plt.plot(pos_ind)
+#for k in range(2*a+3*rp+1):
+for i in range(-rp,rp+1):
+    for j in range(-rp,rp+1):
+            if (i**2 + j**2)>rp**2:
+                planet[[i+a+2*rp],[j+rp]] = True
+            else:
+                planet[[i+a+2*rp],[j+rp]] = False
+planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
+pos_ind.append(star[planet].sum())
+
+plt.imshow(star)
+plt.imshow(planet, alpha = .5)
 plt.show()
 
-
+'''
+plt.plot(pos_ind)
+plt.show()
+'''
+'''
 plt.imshow(star)
 plt.imshow(planet_ma)
 plt.show()
+'''
