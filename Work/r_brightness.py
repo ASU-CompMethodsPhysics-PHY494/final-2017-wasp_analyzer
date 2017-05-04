@@ -40,18 +40,17 @@ planet = np.ones_like(star, dtype=np.bool)
 planet[:, :] = True
 
 pos_ind = []
-for k in range(rp):
+for k in range(a):
     for i in range(-rp,rp):
         for j in range(-rp,rp):
                 if (i**2 + j**2)>rp**2:
-                    planet[[i+2*rp+a],[j+2*rp+a]] = True
+                    planet[[i+2*rp+a],[j+k]] = True
                 else:
-                    planet[[i+2*rp+a],[j+2*rp+a]] = False
+                    planet[[i+2*rp+a],[j+k]] = False
     planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
     pos_ind.append(star[planet].sum())
-    print(pos_ind)
-#plt.plot(pos_ind)
-#plt.show()
+plt.plot(pos_ind)
+plt.show()
 
 
 plt.imshow(star)
