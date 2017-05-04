@@ -28,29 +28,32 @@ for i in range(-a,a):
     for j in range(-a,a):
         #print(i, j)
         if (i**2 + j**2)>a**2:
-            star[[i+a],[j+a]] = 0
+            star[[i+a+2*rp],[j+a+2*rp]] = 0
         else:
             I = 1-0.6096*(1-np.sqrt((a**2 - (i**2 + j**2))/a**2))
-            star[[i+a+rp,[j+a+rp]] = I
+            star[[i+a+2*rp],[j+a+2*rp]] = I
 
 # you can comment this out to not plot if you'd like
-plotarray(star)
+#plotarray(star)
 
 planet = np.ones_like(star, dtype=np.bool)
 planet[:, :] = True
 
 pos_ind = []
-for k in range(2*a+1+4*rp):
+for k in range(rp):
     for i in range(-rp,rp):
         for j in range(-rp,rp):
                 if (i**2 + j**2)>rp**2:
-                    planet[[i+rp],[j+rp+k]] = True
+                    planet[[i+2*rp+a],[j+2*rp+a]] = True
                 else:
-                    planet[[i+rp],[j+rp+k]] = False
-        planet_ma = np.ma.masked_array(np.ones(planet.shape), mask=planet)
-        pos_ind.append(star[planet_ma].sum())
+                    planet[[i+2*rp+a],[j+2*rp+a]] = False
+    planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
+    pos_ind.append(star[planet].sum())
+    print(pos_ind)
+#plt.plot(pos_ind)
+#plt.show()
 
 
 plt.imshow(star)
-plt.imshow(planet.T)
+plt.imshow(planet_ma)
 plt.show()
