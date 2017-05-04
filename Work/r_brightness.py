@@ -1,14 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-<<<<<<< HEAD
-a = 200
 rp = 40
-b = np.zeros((2*a+1,2*a+1+rp), dtype=np.float64)
-=======
-a = 500
+
+a = 100
 b = np.zeros((2*a+1,2*a+1), dtype=np.float64)
->>>>>>> 50679de5c8392b05852aa19686dc8b67b7d24883
 
 #making a new code that may or may not be used
 
@@ -47,17 +43,24 @@ def plotarray(x):
     plt.show()
 
 # you can comment this out to not plot if you'd like
-plotarray(b)
 
 # this is supposed to be 8-trivial so if you run and get a number you
 # definitely did not expect, it COULD be right
-for i in range(10):
-    print(np.sum(b)+i)
-'''
-for i in range(-a,a):
-    for j in range(-a,a):
-        if np.sqrt((i-i)**2 + j**2)
-            b[[i+a],[j+a]] = 0
-        else:
-            b[[i+a],[j+a]] = I
-'''
+'''for i in range(10):
+    print(np.sum(b)+i)'''
+
+planet = np.ones_like(b, dtype=np.bool)
+planet[:, :] = True
+for i in range(-rp,rp):
+    for j in range(-rp,rp):
+            if (i**2 + j**2)>rp**2:
+                planet[[i+rp],[j+rp]] = True
+            else:
+                planet[[i+rp],[j+rp]] = False
+#planet[15:25, 30:40] = False
+
+
+#plotarray(b)
+plt.imshow(b)
+plt.imshow(planet.T, alpha=0.3)
+plt.show()
