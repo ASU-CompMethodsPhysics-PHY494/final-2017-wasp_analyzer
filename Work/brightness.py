@@ -27,6 +27,34 @@ def plotarray(x):
     plt.colorbar(orientation='vertical')
     plt.show()
 
+def shift_planet(shape, rp, x, y=None):
+    """Shift planet with radius rp to position x, y.
+
+    Arguments
+    ---------
+    shape : (NX, NY)
+         size of star array in pixels (array indices)
+    rp : float
+        radius (in pixels)
+    x : float
+        position in pixels
+    y : float
+        position in pixels, default is at half, NY/2
+    """
+    NX, NY = shape
+    if y is None:
+        y = NY/2
+
+    planet = np.zeros(shape, dtype=np.bool)
+    for i in range(-rp,rp):
+        for j in range(-rp,rp):
+            ix = round(i+rp + x)
+            jy = round(j+rp + y)
+            if 0 < ix < NX and 0 < jy < NY:
+                planet[ix, jy] = (i**2 + j**2 > rp**2)
+    return planet
+    
+
 # giving (x,y) points their respective brightness on the surface of the star
 for i in range(-a,a+1):
     for j in range(-a,a+1):
@@ -44,24 +72,24 @@ planet = np.ones_like(star, dtype=np.bool)
 planet[:, :] = True
 
 pos_ind = []
-#for k in range(2*a+3*rp+1):
-for i in range(-rp,rp+1):
-    for j in range(-rp,rp+1):
-            if (i**2 + j**2)>rp**2:
-                planet[[i+a+2*rp],[j+rp]] = True
-            else:
-                planet[[i+a+2*rp],[j+rp]] = False
-planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
-pos_ind.append(star[planet].sum())
+for k in range(2*a+2*rp+1):
+    for i in range(-rp,rp+1):
+        for j in range(-rp,rp+1):
+                if (i**2 + j**2)>rp**2:
+                    planet[[i+a+2*rp],[j+rp+k]] = True
+                else:
+                    planet[[i+a+2*rp],[j+rp+k]] = False
+    planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
+    pos_ind.append(star[planet].sum())
 
 plt.imshow(star)
 plt.imshow(planet, alpha = .5)
 plt.show()
 
-'''
+
 plt.plot(pos_ind)
 plt.show()
-'''
+
 '''
 plt.imshow(star)
 plt.imshow(planet_ma)

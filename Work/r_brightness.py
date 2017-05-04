@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-rp = 5
+rp = 10
 rs = 10*rp
 a = rs
 
@@ -44,24 +44,26 @@ planet = np.ones_like(star, dtype=np.bool)
 planet[:, :] = True
 
 pos_ind = []
-#for k in range(2*a+3*rp+1):
-for i in range(-rp,rp+1):
-    for j in range(-rp,rp+1):
-            if (i**2 + j**2)>rp**2:
-                planet[[i+a+2*rp],[j+rp]] = True
-            else:
-                planet[[i+a+2*rp],[j+rp]] = False
-planet_ma = np.ma.masked_array(np.ones(star.shape), mask=planet)
-pos_ind.append(star[planet].sum())
+for k in range(2*a+3*rp+1):
+    for i in range(-rp,rp+1):
+        for j in range(-rp,rp+1):
+                if (i**2 + j**2)>rp**2:
+                    planet[[i+a+2*rp],[j+k]] = True
+                else:
+                    planet[[i+a+2*rp],[j+k]] = False
+                planet[[a+2*rp],[0,k-rp-1]]=True
+
+    planet_ma = np.ma.masked_array(np.zeros(star.shape), mask=planet)
+    pos_ind.append(star[planet].sum())
 
 plt.imshow(star)
 plt.imshow(planet, alpha = .5)
 plt.show()
 
-'''
+
 plt.plot(pos_ind)
 plt.show()
-'''
+
 '''
 plt.imshow(star)
 plt.imshow(planet_ma)
