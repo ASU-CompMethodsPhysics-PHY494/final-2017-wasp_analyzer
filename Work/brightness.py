@@ -46,6 +46,7 @@ def shift_planet(shape, rp, x, y=None):
         y = NY/2
 
     planet = np.zeros(shape, dtype=np.bool)
+    planet[:,:] = True
     for i in range(-rp,rp):
         for j in range(-rp,rp):
             ix = round(i+rp + x)
@@ -53,7 +54,7 @@ def shift_planet(shape, rp, x, y=None):
             if 0 < ix < NX and 0 < jy < NY:
                 planet[ix, jy] = (i**2 + j**2 > rp**2)
     return planet
-    
+
 
 # giving (x,y) points their respective brightness on the surface of the star
 for i in range(-a,a+1):
